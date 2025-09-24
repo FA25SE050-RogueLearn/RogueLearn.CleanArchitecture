@@ -68,6 +68,18 @@
             "**/Swagger/**",
             "**/*Swagger*"
           ]
+        },
+        {
+          "exclude": [
+            ".git/**",
+            ".gitignore",
+            ".gitattributes",
+            "**/.git/**",
+            "**/.gitignore",
+            "**/.gitattributes",
+            ".github/**",
+            "**/.github/**"
+          ]
         }
       ]
     }
