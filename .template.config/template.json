@@ -1,0 +1,90 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "RogueLearn Team",
+  "classifications": ["Web", "API", "Microservice", "Clean Architecture"],
+  "identity": "RogueLearn.CleanArchitecture.Microservice",
+  "name": "RogueLearn Clean Architecture Microservice Template",
+  "shortName": "roguelearn-microservice",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "MyMicroservice",
+  "preferNameDirectory": true,
+  "symbols": {
+    "ServiceName": {
+      "type": "parameter",
+      "datatype": "string",
+      "defaultValue": "MyMicroservice",
+      "replaces": "MyMicroservice",
+      "description": "The name of the microservice (e.g., UserService, ProductService)"
+    },
+    "SolutionName": {
+      "type": "parameter",
+      "datatype": "string",
+      "defaultValue": "MySolution",
+      "replaces": "MySolution",
+      "description": "The name of the solution file"
+    },
+    "CompanyName": {
+      "type": "parameter",
+      "datatype": "string",
+      "defaultValue": "RogueLearn",
+      "replaces": "RogueLearn",
+      "description": "The company or organization name"
+    },
+    "ArchitectureName": {
+      "type": "parameter",
+      "datatype": "string",
+      "defaultValue": "CleanArchitecuterV2",
+      "replaces": "CleanArchitecuterV2",
+      "description": "The architecture version name"
+    },
+    "Port": {
+      "type": "parameter",
+      "datatype": "integer",
+      "defaultValue": "5000",
+      "description": "The port number for the API service"
+    },
+    "EnableSwagger": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "true",
+      "description": "Enable Swagger/OpenAPI documentation"
+    },
+    "EnableHealthChecks": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "true",
+      "description": "Enable health check endpoints"
+    }
+  },
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "condition": "(!EnableSwagger)",
+          "exclude": [
+            "**/Swagger/**",
+            "**/*Swagger*"
+          ]
+        }
+      ]
+    }
+  ],
+  "postActions": [
+    {
+      "condition": "(OS != \"Windows_NT\")",
+      "description": "Make scripts executable",
+      "manualInstructions": [
+        {
+          "text": "Run 'chmod +x **/*.sh'"
+        }
+      ],
+      "actionId": "cb9a6cf3-4f5c-4860-b9d2-03a574959774",
+      "args": {
+        "+x": "**/*.sh"
+      }
+    }
+  ]
+}

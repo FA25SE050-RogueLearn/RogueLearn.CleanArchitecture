@@ -1,0 +1,44 @@
+{
+  "name": "RogueLearn Clean Architecture Microservice Template",
+  "description": "A comprehensive .NET microservice template following Clean Architecture principles with Domain-Driven Design patterns. Includes API, Application, Domain, and Infrastructure layers with pre-configured dependencies for building scalable microservices.",
+  "version": "1.0.0",
+  "author": "RogueLearn Team",
+  "tags": [
+    "microservice",
+    "clean-architecture",
+    "ddd",
+    "cqrs",
+    "mediatr",
+    "automapper",
+    "fluentvalidation",
+    "masstransit",
+    "supabase",
+    "serilog",
+    "swagger",
+    "dotnet9"
+  ],
+  "features": [
+    "Clean Architecture with 4 layers (API, Application, Domain, Infrastructure)",
+    "Domain-Driven Design patterns",
+    "CQRS with MediatR",
+    "AutoMapper for object mapping",
+    "FluentValidation for input validation",
+    "MassTransit for messaging with RabbitMQ",
+    "Supabase integration for database operations",
+    "Serilog for structured logging",
+    "Swagger/OpenAPI documentation",
+    "Health checks",
+    "Dependency injection setup",
+    "Repository pattern implementation",
+    "Building blocks shared library"
+  ],
+  "requirements": {
+    "dotnet": "9.0 or higher",
+    "ide": "Visual Studio 2022, VS Code, or JetBrains Rider"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/roguelearn/clean-architecture-microservice-template"
+  }
+}
