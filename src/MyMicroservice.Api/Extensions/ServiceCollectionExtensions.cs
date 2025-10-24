@@ -1,5 +1,6 @@
 using FluentValidation;
 using MediatR;
+using Microsoft.OpenApi.Models;
 using MyMicroservice.Application.Behaviours;
 using MyMicroservice.Application.Features.Products.Commands.CreateProduct;
 using MyMicroservice.Application.Mappings;
@@ -35,7 +36,7 @@ public static class ServiceCollectionExtensions
         services.AddSwaggerGen(c =>
         {
             c.SwaggerDoc("v1", new() { Title = "MyMicroservice API", Version = "v1" });
-            
+            c.CustomSchemaIds(type => type.FullName?.Replace("+", ".") ?? type.Name);
             // Include XML comments
             var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
             var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
@@ -43,6 +44,31 @@ public static class ServiceCollectionExtensions
             {
                 c.IncludeXmlComments(xmlPath);
             }
+
+            c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+			{
+				Name = "Authorization",
+				Description = "Please enter your JWT with Bearer into field. Example: \"Bearer {token}\"",
+				In = ParameterLocation.Header,
+				Type = SecuritySchemeType.Http,
+				Scheme = "bearer",
+				BearerFormat = "JWT"
+			});
+
+			c.AddSecurityRequirement(new OpenApiSecurityRequirement
+			{
+				{
+					new OpenApiSecurityScheme
+					{
+						Reference = new OpenApiReference
+						{
+							Type = ReferenceType.SecurityScheme,
+							Id = "Bearer"
+						}
+					},
+					Array.Empty<string>()
+				}
+			});
         });
 
         services.AddCors(options =>

@@ -82,9 +82,6 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity, 
 
     public virtual async Task<T> AddAsync(T entity, CancellationToken cancellationToken = default)
     {
-        entity.CreatedAt = DateTime.UtcNow;
-        entity.UpdatedAt = DateTime.UtcNow;
-
         var response = await _supabaseClient
             .From<T>()
             .Insert(entity);
@@ -94,8 +91,6 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity, 
 
     public virtual async Task<T> UpdateAsync(T entity, CancellationToken cancellationToken = default)
     {
-        entity.UpdateTimestamp();
-
         var response = await _supabaseClient
             .From<T>()
             .Where(x => x.Id == entity.Id)

@@ -51,13 +51,11 @@ public class Product : BaseEntity
             throw new ArgumentException("Product name cannot be null or empty", nameof(name));
 
         Name = name;
-        UpdateTimestamp();
     }
 
     public void UpdatePrice(Money price)
     {
         Price = price ?? throw new ArgumentNullException(nameof(price));
-        UpdateTimestamp();
     }
 
     private void AddDomainEvent(DomainEvent domainEvent)
